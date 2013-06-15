@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type-"text/css" href="styles/style.css"/>
+     <link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.min.css" />
+    <script src="libs/jquery-1.7.1.js" type="text/javascript"></script>
+    <script src="libs/highcharts.js" type="text/javascript"></script>
+    <script src="libs/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="libs/sylvester.src.js"></script>
+    <script type="text/javascript" src="libs/glUtils.js"></script>
+    <script type="text/javascript" src="src/script.js"></script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+      varying highp vec2 vTextureCoord;
+      uniform sampler2D uSampler;
+
+      void main(void) {
+      gl_FragColor = texture2D(uSampler,vTextureCoord);
+      }
+    </script>
+    <script id="shader-vs" type="x-shader/x-vertex">
+      attribute vec3 aVertexPosition;
+      attribute vec2 aTextureCoord;
+      
+      uniform mat4 uMVMatrix;
+      uniform mat4 uPMatrix;
+      
+      varying highp vec2 vTextureCoord;
+      varying highp vec3 vLighting;
+      
+      void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition,1.0);
+        vTextureCoord = aTextureCoord;
+      }
+  </script>
+ 
+  </head>
+  <body onload="start()">
+    <div class="header-bar">
+      <div class="l-float logo-block">
+	<div class="logo-inner l-float" style="background: rgb(80,80,80);"></div>
+	<div class="logo-inner r-float" style="background: rgb(80,130,170);"></div>
+	<div class="logo-inner l-float" style="background: rgb(90,90,90);"></div>
+	<div class="logo-inner r-float" style="background: rgb(180,80,40);"></div>
+      </div>
+      <div class="header-title l-float">Providentia <span class="sub-title">Datacenter Monitoring and Controlling Service</span></div>
+      
+      <div class="clear-float"></div>
+    </div>
+      <div id="3d-window" class="l-float common-margin">
+	<canvas id="glcanvas"></canvas>
+      </div>
+      
+      <div id="block-container" class="l-float common-margin">
+      <div id="dc-block" class="common-padding">
+	<div id="row-one">
+	  <div class="l-float server-width server-height server srv-selected" location="1"><div class="server-name">SRV-01</div></div>
+	  <div class="l-float server-width server-height server" location="2"><div class="server-name">SRV-02</div></div>
+	  <div class="l-float server-width server-height server" location="3"><div class="server-name">SRV-03</div></div>
+	  <div class="l-float server-width server-height server" location="4"><div class="server-name">SRV-04</div></div>
+	  <div class="l-float server-width server-height server" location="5"><div class="server-name">SRV-05</div></div>
+	</div>
+	<div id="row-two">
+	  <div class="l-float server-width server-height server" location="6"><div class="server-name">SRV-06</div></div>
+	  <div class="l-float server-width server-height server" location="7"><div class="server-name">SRV-07</div></div>
+	  <div class="l-float server-width server-height server" location="8"><div class="server-name">SRV-08</div></div>
+	  <div class="l-float server-width server-height server" location="9"><div class="server-name">SRV-09</div></div>
+	  <div class="l-float server-width server-height server" location="10"><div class="server-name">SRV-10</div></div>
+	</div>
+      </div>
+      </div>
+      <div id="srv-box-container" class="l-float common-margin">
+	<div class="common-padding common-margin rack rack-selected" model="DELL">LVL-A</div>
+	<div class="common-padding common-margin rack" model="IBM">LVL-B</div>
+	<div class="common-padding common-margin rack" model="HP">LVL-C</div>
+	<div class="common-padding common-margin rack" model="IBM">LVL-D</div>
+	<div class="common-padding common-margin rack" model="DELL">LVL-E</div>
+	<div class="common-padding common-margin rack" model="DELL">LVL-F</div>
+	<div class="common-margin">
+	  <span class="rack-stat-outer" >
+	    <span class="rack-stat-inner" id="rack-cpu"></span>
+	  </span>
+	  <span class="rack-stat-outer">
+	    <span class="rack-stat-inner" id="rack-mem"></span>
+	</span>
+	</div>
+      </div>
+      <div id="srv-info-box" class="l-float common-margin">
+	<div id="label-section" class="l-float common-padding">
+	  <span class="desc-label">Model</span>
+	  <span class="desc-label">Processors</span>
+	  <span class="desc-label">FSB</span>
+	  <span class="desc-label">Cache</span>
+	  <span class="desc-label">Chipset</span>
+	  <span class="desc-label">Memory</span>
+	  <span class="desc-label">Power Supply</span>
+	  <span class="desc-label">Network Card</span>
+	  <span class="desc-label">Video</span>
+	</div>
+	<div id="desc-section" class="r-float common-padding">
+	  <span class="desc-text">DELL Power Edge 1850</span>
+	  <span class="desc-text">SCore 64-bit Intel Xenon 3.8GHz</span>
+	  <span class="desc-text">800 MHz</span>
+	  <span class="desc-text">Upto 2MB L2 per Processor Core</span>
+	  <span class="desc-text">Intel E7520</span>
+	  <span class="desc-text">16GB of Dual rank 4GB DIMM's</span>
+	  <span class="desc-text">550W, optional hot-plug redundant power</span>
+	  <span class="desc-text">Intel PRO/1000 MT Gigabit</span>
+	  <span class="desc-text">Embedded ATI Radeon 7000-M with 16MB SDRAM</span>
+	</div>
+      </div>
+      <div class="clear-float"></div>
+      <div id="rotation-controls">
+	<input type='number' id='x-rotation' value='0'/>
+	<input type='number' id='y-rotation' value='0'/>
+	<input type='number' id='z-rotation' value='0'/>
+      </div>
+      <div id="translation-controls">	
+	<input type='number' id='x-translate' value='0'/>
+	<input type='number' id='y-translate' value='0'/>
+	<input type='number' id='z-translate' value='25'/>
+      </div>
+      <div id="net-act-container" class="l-float common-margin"><div class="section-title">Network Activity</div><div id="net-act" ></div></div>
+      <div id="cpu-act-container" class="l-float common-margin"><div class="section-title">System Activity</div><div id="cpu-act" ></div></div>
+      <div id="temp-area-container" class="l-float common-margin">
+	<div id="temp-area-left" class="l-float common-padding">
+	  <div class="temp-title">Temperature<span class="legend-block temp"></span></div>
+	  <div id="temp-val" class="l-float">
+	    <span id="temp-deg">12.50</span>
+            <span class="temp-unit">deg C</span>
+	  </div>
+	  <br/>
+	  <br/>
+	  <div class="temp-title">Humidity<span class="legend-block hum"></span></div>
+	  <div id="temp-val" class="l-float">
+	    <span id="hum-deg">12.50</span>
+            <span class="temp-unit">mBars</span>
+	  </div>
+	  <br/>
+	  <br/>
+	  <div class="temp-title">Pressure<span class="legend-block prs"></span></div>
+	  <div id="temp-val" class="l-float">
+	    <span id="prs-deg">12.50</span>
+            <span class="temp-unit">KPa</span>
+	  </div>
+	  <br/>
+	  <br/>
+	  <div class="temp-title">Air Density<span class="legend-block aid"></span></div>
+	  <div id="temp-val" class="l-float">
+	    <span id="aid-deg">12.50</span>
+            <span class="temp-unit">Kg/cm<sup>3</sup></span>
+	  </div>
+	</div>
+	<div id="temp-area-right" class="r-float common-padding">
+	  <div id="temp-indicator" class="l-float indicator common-margin"><div class="inner-indicator"></div></div>
+	  <div id="hum-indicator" class="l-float indicator common-margin"><div class="inner-indicator"></div></div>
+	  <div id="prs-indicator" class="l-float indicator common-margin"><div class="inner-indicator"></div></div>
+	  <div id="aid-indicator" class="l-float indicator common-margin"><div class="inner-indicator"></div></div>
+	  <div id="temp-slider" class="l-float"></div>
+	</div>
+      </div>
+      </div>
+      <div id="button-controls" class="l-float common-margin">
+	<input type="button" id="logbn" class="btn-style" value="Logs"/>
+	<input type="button" id="pingbn" class="btn-style" value="Ping"/>
+	<input type="button" id="restartbn" class="btn-style" value="Restart"/>
+	<input type="button" id="lockbn" class="btn-style" value="Lock"/>
+	<div class="arrow-container">
+	  <div>
+	    <span type="button" id="ubn" class="arrows up-arrow">&#9650;</span>
+	  </div>
+	  <div>
+	    <span type="button" class="l-float arrows left-arrow" id="lbn">&#9668;</span>
+	    <span type="button" class="r-float arrows right-arrow" id="rbn">&#9658;</span>
+	  </div>
+	  <div>
+	    <span type="button" id="dbn" class="arrows down-arrow">&#9660;</span>
+	  </div>
+	</div>
+	<span class="rot-button" id="acw">&#8635;</span>
+	<span class="rot-button" id="cw">&#8634;</span>
+      </div>
+      <div class="clear-float"></div>
+      
+  </body>
+  
+</html>

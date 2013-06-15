@@ -1,0 +1,336 @@
+{
+    margin:0px;
+}
+
+canvas {
+	border: 2px solid black;
+	-moz-box-shadow: black 2px 2px 2px;
+	background-color: black;
+}
+
+#dc-block{
+    width:480px;
+    background:#d8d8d8;
+}
+
+.l-float{
+    float:left;
+}
+
+.r-float{
+    float:right;
+}
+
+.clear-float{
+    clear:both;
+}
+
+.common-padding{
+    padding:10px;
+}
+
+.common-margin{
+    margin:10px;
+}
+
+.header-bar{
+    height: 7%;
+    width: 97.5%;
+    background: rgb(160,160,160);
+    padding: 10px 0px 0px 10px;
+    margin:0px 0px 0px 10px;
+    
+}
+
+.header-title{
+    height:80%;
+    width:96%;
+    padding: 0px 0px 0px 5px;
+    font:36px Roboto bold;
+    background:rgb(200,200,200);
+    color:rgb(36,36,36);
+}
+
+#block-container{
+    height:43%;
+}
+
+#row-one{
+    height:47%;
+}
+
+#row-two{
+    height:47%;
+}
+
+.server-width{
+    width:18%;
+}
+
+.server-height{
+    height:93%;
+}
+
+.server{
+    background:#c0c0c0;
+    margin:1%;
+    cursor:pointer;
+}
+
+.server-name{
+    margin:65% 19%;
+    font:0.95em Arial bold;
+    color:#1d1d1d;
+}
+
+#net-act-container{
+    background:#d8d8d8;
+    padding:10px;
+    height:40%;
+}
+
+#net-act{
+    height:285px;
+    width:465px;
+}
+
+#cpu-act-container{
+    background:#d8d8d8;
+    padding:10px;
+    height:40%;
+}
+
+#cpu-act{
+    height:285px;
+    width:480px;
+}
+
+#temp-area-container{
+    background:#d8d8d8;
+    padding:10px;
+    height:40%;
+    width:25%;
+}
+
+#temp-area-left{
+    width:35%;
+}
+
+#temp-area-right{
+    width:50%;
+}
+
+.temp-unit{
+    font:0.5em Arial bold;
+}
+
+#srv-box-container{
+    height:43%;
+    width:10%;
+    background:#d8d8d8;
+}
+
+.rack{
+    background:#c0c0c0;
+    text-align:center;
+    font:0.8em Arial bold;
+    cursor:pointer;
+}
+
+#temp-slider{
+    height:93%;
+    margin-left:15%;
+}
+.section-title{
+    font:1.0em Arial bold;
+}
+#temp-val{
+    font: 1em Arial bold;
+    padding:4%;
+    
+}
+.inner-indicator{
+    background:#c0c0c0;
+}
+
+#temp-indicator{
+    background:rgb(3, 193, 253);
+}
+
+#hum-indicator{
+    background:rgb(252, 191, 35);
+}
+
+#prs-indicator{
+    background:rgb(123, 253, 72);
+}
+
+#aid-indicator{
+    background:rgb(196, 107, 255);
+}
+
+.temp{
+    background: rgb(18,200,256);
+
+}
+
+.hum{
+    background:rgb(252, 191, 35);
+}
+
+.prs{
+    background:rgb(123, 253, 72);
+}
+
+.aid{
+    background:rgb(196, 107, 255);
+}
+.temp-title{
+    font:1em Arial bold;
+    padding:2%;
+}
+
+.indicator{
+ height:87%;
+ width:7%;
+}
+#rotation-controls{
+    display:none;
+}
+
+#translation-controls{
+    display:none;
+}
+
+#srv-info-box{
+width: 22%;
+height: 43%;
+background: #d8d8d8;
+}
+
+#button-controls{
+    height: 43%;
+    width: 5.5%;
+    background: #d8d8d8;
+}
+
+#label-section{
+    width:20%;
+    height:94%;
+}
+
+#desc-section{
+    width:65%;
+    height:94%;
+}
+
+.desc-text{
+    font:0.8em Arial bold;
+    width:96%;
+    display:block;
+    padding:5px;
+}
+
+.desc-label{
+    font:0.8em Arial;
+    width:96%;
+    text-align:right;
+    display:block;
+    padding:5px;
+}
+
+.rack-stat-outer{
+    display: block;
+    background: #ededed;
+    height: 10px;
+    margin: 3px;
+}
+
+.rack-stat-inner{
+    display: block;
+    height: 100%;
+}
+
+#rack-mem{
+    background:rgb(56, 104, 148);
+}
+
+#rack-cpu{
+    background:rgb(133, 44, 22);
+}
+
+.srv-selected{
+    background:rgb(160,160,160);
+}
+
+.rack-selected{
+   background:rgb(160,160,160);
+}
+
+.btn-style{
+width: 90%;
+height: 35px;
+text-align: center;
+margin: 5%;
+}
+
+.arrows{
+    display:block;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+}
+
+.up-arrow,.down-arrow{
+    width:100%;
+    text-align:center;
+}
+
+.left-arrow,.right-arrow{
+    width:45%;
+    text-align:center;
+}
+
+.arrow-container{
+margin: 15px 5px 0px 5px;
+background: rgb(180,180,180);
+border-radius: 5px;
+}
+
+.rot-button{
+    display: block;
+    font: 1.5em Arial bolder;
+    background: rgb(180,180,180);
+    border-radius: 5px;
+    margin: 7px 20px 7px 20px;
+    text-align: center;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+}
+
+.legend-block{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 0px 0px 0px 7px;
+}
+
+.logo-block{
+    display: block;
+    width: 43px;
+    height: 43px;
+    background: rgb(182,183,183);
+}
+
+.logo-inner{
+    margin:8px 9px 9px 7px;
+    height:5px;
+    width:5px;
+}
+
+.sub-title{
+    font:18px Roboto;
+    color:rgb(90,90,90);
+    margin-left:10px;
+}
